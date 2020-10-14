@@ -23,6 +23,7 @@ import { AsyncOrderEffects } from './effects/asyncorders.effects';
 import { AsyncListComponent } from './components/async-list/async-list.component';
 import { WebsocketsComponent } from './components/websockets/websockets.component';
 import { CurbsideHubService } from './services/curbside.hub.service';
+import { OrderDisplayComponent } from './components/order-display/order-display.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,8 @@ import { CurbsideHubService } from './services/curbside.hub.service';
     SavingDialogComponent,
     AsyncComponent,
     AsyncListComponent,
-    WebsocketsComponent
+    WebsocketsComponent,
+    OrderDisplayComponent
   ],
   imports: [
     StoreModule.forRoot(reducers),

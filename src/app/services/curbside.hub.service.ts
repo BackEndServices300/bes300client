@@ -11,6 +11,7 @@ export class CurbsideHubService {
 
     private hubConnnection: signalR.HubConnection;
     private subject$: BehaviorSubject<OrderEntity>;
+    private order: OrderEntity;
 
     constructor() {
         this.hubConnnection = new signalR.HubConnectionBuilder().withUrl('http://localhost:3000/curbsidehub').build();
@@ -21,13 +22,19 @@ export class CurbsideHubService {
         this.subject$ = new BehaviorSubject<OrderEntity>(null);
 
         this.hubConnnection.on('OrderPlaced', (data) => {
-            this.subject$.next(data);
+            this.order = data;
+            this.subject$.next(this.order);
         });
 
         this.hubConnnection.on('OrderProcessed', (data) => {
-            this.subject$.next(data);
+            this.order = data;
+            this.subject$.next(this.order);
         });
 
+        this.hubConnnection.on('ItemProcessed', (data) => {
+            this.order.location = data.message;
+            this.subject$.next(this.order);
+        })
 
     }
 
@@ -35,7 +42,7 @@ export class CurbsideHubService {
         this.hubConnnection.send('PlaceOrder', request);
     }
 
-    getOrder():Observable<OrderEntity> {
+    getOrder(): Observable<OrderEntity> {
         return this.subject$.asObservable();
     }
 }
