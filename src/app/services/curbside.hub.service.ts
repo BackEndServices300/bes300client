@@ -34,7 +34,11 @@ export class CurbsideHubService {
         this.hubConnnection.on('ItemProcessed', (data) => {
             this.order.location = data.message;
             this.subject$.next(this.order);
-        })
+        });
+
+        this.hubConnnection.on('ShoppingItemAdded', (data => {
+            console.log('Somebody added a shopping Item!', data);
+        }))
 
     }
 
