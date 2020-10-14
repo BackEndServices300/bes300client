@@ -22,6 +22,7 @@ import { reducers } from './reducers';
 import { AsyncOrderEffects } from './effects/asyncorders.effects';
 import { AsyncListComponent } from './components/async-list/async-list.component';
 import { WebsocketsComponent } from './components/websockets/websockets.component';
+import { CurbsideHubService } from './services/curbside.hub.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +48,7 @@ import { WebsocketsComponent } from './components/websockets/websockets.componen
     AppRoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [CurbsideHubService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

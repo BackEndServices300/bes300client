@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CurbsideHubService } from 'src/app/services/curbside.hub.service';
 
 @Component({
   selector: 'app-websockets',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WebsocketsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private hub:CurbsideHubService) { }
 
   ngOnInit(): void {
   }
